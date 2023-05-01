@@ -3,6 +3,16 @@ entries:
   example:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2023-05-01T11:38:24.223726412Z"
+    description: A Helm chart for Kubernetes
+    digest: 94ccf6b304f5fea8387907f70dfd9f9c6365dda0148a36bcc2a6bb7e88954a1e
+    name: example
+    type: application
+    urls:
+    - https://github.com/levivannoort/public-helm-chart-repository/releases/download/example-0.1.3/example-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2023-05-01T11:14:11.25223223Z"
     description: A Helm chart for Kubernetes
     digest: 638bc49a54508cc41118523c6277ab67ea40a703e1187fca7c816a2d9ad15f1e
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/levivannoort/public-helm-chart-repository/releases/download/example-0.1.2/example-0.1.2.tgz
     version: 0.1.2
-generated: "2023-05-01T11:14:11.25223773Z"
+generated: "2023-05-01T11:38:24.223735612Z"
