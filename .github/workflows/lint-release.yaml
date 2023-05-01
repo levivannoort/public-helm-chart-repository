@@ -1,5 +1,5 @@
-name: lint helm charts
-run-name: lint helm charts by @${{ github.actor }}
+name: lint and release helm charts
+run-name: lint and release helm charts by @${{ github.actor }}
 
 on:
   workflow_dispatch:
@@ -9,6 +9,8 @@ on:
 
 jobs:
   lint:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -27,6 +29,11 @@ jobs:
           python-version: '3.10'
           check-latest: true
 
+      - name: configure git (package metadata) 🔧
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
       - name: set up chart-testing 🔧
         uses: helm/chart-testing-action@v2.4.0
 
@@ -41,3 +48,11 @@ jobs:
       - name: run chart-testing (lint) 📦
         if: steps.list-changed.outputs.changed == 'true'
         run: ct lint --config ./.github/workflows/config/helm-configuration.yaml --target-branch ${{ github.event.repository.default_branch }}
+      
+      - name: run chart-releaser 📦
+        uses: helm/chart-releaser-action@v1.5.0
+        with:
+          charts_dir: ./
+          config: ./.github/workflows/config/helm-configuration.yaml
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
