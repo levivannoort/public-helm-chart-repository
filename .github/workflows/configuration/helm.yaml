@@ -1,9 +1,8 @@
 target-branch: main
 
-chart-repos:
-  - gateway=https://istio-release.storage.googleapis.com/charts
-chart-dirs:
-  - ./
+chart-repos: gateway=https://istio-release.storage.googleapis.com/charts
+
+chart-dirs: ./
 
 helm-extra-args: --timeout 600s
 
